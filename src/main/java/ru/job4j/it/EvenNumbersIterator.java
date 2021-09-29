@@ -19,7 +19,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
                 return true;
             } else {
                 index++;
-                return hasNext();
+                return index < data.length && data[index] % 2 == 0;
             }
         }
         return false;
