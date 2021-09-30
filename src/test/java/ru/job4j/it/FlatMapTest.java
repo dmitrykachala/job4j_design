@@ -84,4 +84,5 @@ public class FlatMapTest {
         FlatMap flat = new FlatMap(it);
         assertFalse(flat.hasNext());
     }
+
 }
