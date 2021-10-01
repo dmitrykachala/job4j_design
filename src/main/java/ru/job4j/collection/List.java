@@ -1,4 +1,4 @@
-package ru.job4j.generics.collection.list;
+package ru.job4j.collection;
 
 public interface List<E> extends Iterable<E> {
 

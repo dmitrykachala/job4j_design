@@ -1,4 +1,4 @@
-package ru.job4j.list;
+package ru.job4j.collection.list;
 
 import java.util.*;
 
@@ -56,7 +56,7 @@ public class SimpleArrayList<T> implements List<T> {
     @Override
     public Iterator<T> iterator() {
 
-        return new Iterator<T>() {
+        return new Iterator<>() {
 
             private final int expectedModCount = modCount;
             private int index = 0;
