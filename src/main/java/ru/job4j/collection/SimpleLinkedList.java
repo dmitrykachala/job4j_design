@@ -1,23 +1,24 @@
-package ru.job4j.generics.collection.list;
+package ru.job4j.collection;
 
-import org.w3c.dom.Node;
-
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Objects;
+import java.util.NoSuchElementException;
+import java.util.ConcurrentModificationException;
 
 public class SimpleLinkedList<E> implements List<E> {
+
+    private int size = 0;
+    private Node<E> first = null;
+    private Node<E> last = null;
+    private int modCount = 0;
 
     private static class Node<E> {
         private E item;
         private Node<E> next;
-        private Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next) {
+        Node(E element, Node<E> next) {
             this.item = element;
             this.next = next;
-            this.prev = prev;
         }
 
         public E getItem() {
@@ -25,16 +26,10 @@ public class SimpleLinkedList<E> implements List<E> {
         }
     }
 
-    private int size = 0;
-    private Node<E> first = null;
-    private Node<E> last = null;
-
-    private int modCount = 0;
-
     @Override
     public void add(E value) {
         Node<E> clast = last;
-        last = new Node<>(last, value, null);
+        last = new Node<>(value, null);
         if (clast != null) {
             clast.next = last;
         }
@@ -47,12 +42,10 @@ public class SimpleLinkedList<E> implements List<E> {
 
     @Override
     public E get(int index) {
-        int ind = Objects.checkIndex(index, size);
-        int pos = 0;
+        Objects.checkIndex(index, size);
         Node<E> citem = first;
-        while (pos < ind) {
+        for (int pos = 0; pos < index; pos++) {
             citem = citem.next;
-            pos++;
         }
         return citem.getItem();
     }
