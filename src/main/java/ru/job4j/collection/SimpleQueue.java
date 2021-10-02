@@ -9,7 +9,7 @@ public class SimpleQueue<T> {
     private int sizeOut;
 
     public T poll() throws NoSuchElementException {
-        if (size  == 0) {
+        if (size == 0 && sizeOut == 0) {
             throw new NoSuchElementException();
         }
         if (sizeOut == 0) {
@@ -18,13 +18,9 @@ public class SimpleQueue<T> {
                 sizeOut++;
             }
         }
-        T tmp = null;
-        if (sizeOut != 0) {
-            tmp = out.pop();
-        }
         sizeOut--;
         size--;
-        return tmp;
+        return out.pop();
     }
 
     public void push(T value) {
