@@ -31,6 +31,7 @@ public class SimpleMapTest {
         assertTrue(map.put(5, "zzz"));
         assertTrue(map.put(6, "xxx"));
         assertFalse(map.put(7, "sss"));
+        assertTrue(map.put(7, "sss"));
     }
 
     @Test

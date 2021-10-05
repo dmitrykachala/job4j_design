@@ -23,7 +23,9 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if ((double) count / capacity >= 0.75) {
+        if ((double) count / capacity >= LOAD_FACTOR) {
+            expand();
+            System.out.println("The map is full, pls try again.");
             return false;
         }
         int keyIndex = indexFor(hash(key));
@@ -38,19 +40,19 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private int indexFor(int hash) {
-        return hash & (table.length - 1);
+        return hash & (capacity - 1);
     }
 
     private void expand() {
-
             MapEntry<K, V>[] tableTmp = table;
             capacity = capacity * 2;
             table = new MapEntry[capacity];
             for (MapEntry<K, V> tab : tableTmp) {
-                int index = indexFor(hash(tab.getKey()));
+                if (tab != null) {
+                    int index = indexFor(hash(tab.getKey()));
                     table[index] = tab;
+                }
             }
-
         modCount++;
     }
 
