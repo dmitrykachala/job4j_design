@@ -25,10 +25,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public boolean put(K key, V value) {
         if ((double) count / capacity >= LOAD_FACTOR) {
             expand();
-            System.out.println("The map is full, pls try again.");
-            return false;
         }
         int keyIndex = indexFor(hash(key));
+        if (table[keyIndex] != null) {
+            return false;
+        }
         table[keyIndex] = new MapEntry<>(key, value);
         modCount++;
         count++;
