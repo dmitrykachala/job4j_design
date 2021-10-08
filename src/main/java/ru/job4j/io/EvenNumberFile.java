@@ -14,8 +14,6 @@ public class EvenNumberFile {
             for (String ln : lines) {
                 if (Integer.parseInt(ln) % 2 == 0) {
                     System.out.println(ln + " is even number.");
-                } else {
-                    System.out.println(ln + " is NOT even number.");
                 }
             }
         } catch (Exception e) {
