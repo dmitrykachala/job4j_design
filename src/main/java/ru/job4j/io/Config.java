@@ -25,7 +25,9 @@ public class Config {
                     .collect(Collectors.toList());
             for (var ln : lnOnlyNeeded) {
                     String[] keyAndValue = ln.split("=");
+                    if (!keyAndValue[0].equals("")) {
                         values.put(keyAndValue[0], keyAndValue[1]);
+                    }
             }
         } catch (IOException e) {
             e.printStackTrace();
