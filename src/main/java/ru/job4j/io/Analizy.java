@@ -10,26 +10,29 @@ public class Analizy {
         try (BufferedReader read = new BufferedReader(new FileReader(source))) {
             String str = "";
             boolean status = false;
-            for (var ln : read.lines().collect(Collectors.toList())) {
-                String[] substr = ln.split(" ");
+            String readLine = read.readLine();
+            while (readLine != null) {
+                String[] substr = readLine.split(" ");
                 if (substr[0].equals("400") || substr[0].equals("500")) {
                     if (!status) {
                         status = true;
                         str = substr[1] + ";";
                     }
+                    readLine = read.readLine();
                     continue;
                 }
                 if (status) {
                     str = str + substr[1] + ";";
                     line.add(str);
-                    try (PrintWriter outFile = new PrintWriter(new FileOutputStream(target))) {
-                        outFile.println(line);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                 }
+                readLine = read.readLine();
                 status = false;
                 str = "";
+            }
+            try (PrintWriter outFile = new PrintWriter(new FileOutputStream(target))) {
+                outFile.println(line);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } catch (IOException e) {
             e.printStackTrace();
