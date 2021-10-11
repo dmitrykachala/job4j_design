@@ -14,7 +14,7 @@ public class AnalizyTest {
     public TemporaryFolder folder = new TemporaryFolder();
 
     @Test
-    public void unav1() throws IOException {
+    public void unavWhenOnePeriod() throws IOException {
         File target = folder.newFile("target1.txt");
         Analizy test = new Analizy();
         test.unavailable("data/server1.log", target.getAbsolutePath());
@@ -26,7 +26,7 @@ public class AnalizyTest {
     }
 
     @Test
-    public void unav2() throws IOException {
+    public void unavWhenMultiPeriod() throws IOException {
         File target = folder.newFile("target.txt");
         Analizy test = new Analizy();
         test.unavailable("data/server.log", target.getAbsolutePath());
