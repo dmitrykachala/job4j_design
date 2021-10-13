@@ -17,7 +17,7 @@ public class ArgsName {
         }
         for (var arg : args) {
             String[] argArray = arg.split("=");
-            if (argArray.length != 2 || argArray[0].equals("") || argArray[1].equals("")) {
+            if (argArray.length != 2 || argArray[0].equals("")) {
                 throw new IllegalArgumentException();
             }
                 values.put(argArray[0].substring(1), argArray[1]);
