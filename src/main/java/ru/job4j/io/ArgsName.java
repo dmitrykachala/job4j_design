@@ -6,6 +6,11 @@ import java.util.Map;
 public class ArgsName {
 
     private final Map<String, String> values = new HashMap<>();
+    private int size = 0;
+
+    public int getSize() {
+        return size;
+    }
 
     public String get(String key) {
         return values.get(key);
@@ -21,6 +26,7 @@ public class ArgsName {
                 throw new IllegalArgumentException();
             }
                 values.put(argArray[0].substring(1), argArray[1]);
+                size++;
         }
     }
 
