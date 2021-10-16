@@ -20,10 +20,17 @@ public class EchoServer {
                         System.out.println(str);
                         if (strArgs.length > 1) {
                             String[] msg = strArgs[1].split(" ");
-                            if (msg[0].equals("Bye")) {
+                            if (msg[0].equals("Hello")) {
+                                out.write(" Hello!".getBytes());
+                                continue;
+                            }
+                            if (msg[0].equals("Exit")) {
+                                out.write(" Server is closed. Bye-Bye!".getBytes());
                                 System.out.println("Server is closed.");
                                 server.close();
+                                break;
                             }
+                                out.write(" What?".getBytes());
                         }
                     }
                     out.flush();
