@@ -35,7 +35,7 @@ public class CSVReader {
         }
         String path = argsName.get("path");
         if (!Paths.get(path).toFile().exists()) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException("Such file is not found or path is incorrect.");
         }
     }
 
