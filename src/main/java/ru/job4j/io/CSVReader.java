@@ -68,7 +68,6 @@ public class CSVReader {
                 str = "";
             }
         }
-        //scanner.close();
         return joiner;
     }
 
