@@ -3,7 +3,6 @@ package ru.job4j.io;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.StringJoiner;
 
 public class EchoServer {
     public static void main(String[] args) throws IOException {
@@ -22,7 +21,7 @@ public class EchoServer {
                             String[] msg = strArgs[1].split(" ");
                             if (msg[0].equals("Hello")) {
                                 out.write(" Hello!".getBytes());
-                                continue;
+                                break;
                             }
                             if (msg[0].equals("Exit")) {
                                 out.write(" Server is closed. Bye-Bye!".getBytes());
@@ -31,6 +30,7 @@ public class EchoServer {
                                 break;
                             }
                                 out.write(" What?".getBytes());
+                            break;
                         }
                     }
                     out.flush();
