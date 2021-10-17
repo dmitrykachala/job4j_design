@@ -44,30 +44,31 @@ public class CSVReader {
         ArrayList<Integer> fl = new ArrayList<>();
         StringJoiner joiner = new StringJoiner(System.lineSeparator());
         String str = "";
-        Scanner scanner = new Scanner(new File(path));
-        scanner.useDelimiter(System.lineSeparator());
-        String[] columns = scanner.next().split(delimiter);
-        for (String s : filters) {
-            for (int j = 0; j < columns.length; j++) {
-                if (s.equals(columns[j])) {
-                    fl.add(j);
-                    str = str + columns[j] + delimiter;
-                    break;
+        try (Scanner scanner = new Scanner(new File(path))) {
+            scanner.useDelimiter(System.lineSeparator());
+            String[] columns = scanner.next().split(delimiter);
+            for (String s : filters) {
+                for (int j = 0; j < columns.length; j++) {
+                    if (s.equals(columns[j])) {
+                        fl.add(j);
+                        str = str + columns[j] + delimiter;
+                        break;
+                    }
                 }
-            }
-        }
-        joiner.add(str.substring(0, str.length() - 1));
-        str = "";
-
-        while (scanner.hasNext()) {
-            String[] line = scanner.next().split(delimiter);
-            for (var flEl : fl) {
-                str = str + line[flEl] + delimiter;
             }
             joiner.add(str.substring(0, str.length() - 1));
             str = "";
+
+            while (scanner.hasNext()) {
+                String[] line = scanner.next().split(delimiter);
+                for (var flEl : fl) {
+                    str = str + line[flEl] + delimiter;
+                }
+                joiner.add(str.substring(0, str.length() - 1));
+                str = "";
+            }
         }
-        scanner.close();
+        //scanner.close();
         return joiner;
     }
 
