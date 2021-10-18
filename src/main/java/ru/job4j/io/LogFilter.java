@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 public class LogFilter {
     public static List<String> filter(String file) {
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
-            return  in.lines()
+            in.lines()
                     .filter(ln -> {
                         String[] substr = ln.split(" ");
                         return substr[substr.length - 2].equals("404"); })
-                    .collect(Collectors.toList());
+                    .forEach(System.out::println);
         } catch (Exception e) {
             e.printStackTrace();
         }
