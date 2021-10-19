@@ -18,6 +18,22 @@ public class Car {
         this.equipment = equipment;
     }
 
+    public boolean isFourWheelDrive() {
+        return fourWheelDrive;
+    }
+
+    public int getSerialNumber() {
+        return serialNumber;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public String[] getEquipment() {
+        return equipment;
+    }
+
     @Override
     public String toString() {
         return "Car{"
