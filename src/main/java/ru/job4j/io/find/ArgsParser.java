@@ -20,8 +20,9 @@ public class ArgsParser {
                     + "-n=FILE_NAME OR MASK OR REGEX -t= TYPE_OF_SEARCH -o=TARGET_FILE");
         }
         ArgsName arguments = ArgsName.of(args);
-        if (arguments.get("d").equals("") || arguments.get("n").equals("")
-                || arguments.get("t").equals("") || arguments.get("o").equals("")) {
+        if (!arguments.getValues().containsKey("d") || !arguments.getValues().containsKey("n")
+                || !arguments.getValues().containsKey("t")
+                || !arguments.getValues().containsKey("o")) {
             throw new IllegalArgumentException("One or more parameters are wrong."
                     + "Usage: java -jar find.jar -d=FOLDER_FOR_SEARCH "
                     + "-n=FILE_NAME OR MASK OR REGEX -t= TYPE_OF_SEARCH -o=TARGET_FILE");

@@ -27,11 +27,11 @@ public class Find extends SimpleFileVisitor<Path> {
              joiner = findByMask(Paths.get(arguments.getDir()), arguments.getName());
          }
 
-        try (PrintWriter outFile = new PrintWriter(new FileOutputStream(target))) {
-            outFile.println(joiner);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (arguments.getType().equals("regex")) {
+            joiner = findByRegex(Paths.get(arguments.getDir()), arguments.getName());
         }
+
+         printToFile(joiner, target);
     }
 
     private List<Path> findByName(Path dir, Predicate<Path> condition) throws IOException {
@@ -41,9 +41,23 @@ public class Find extends SimpleFileVisitor<Path> {
     }
 
     private StringJoiner findByMask(Path dir, String name) throws IOException {
+        FindByMask searcher = new FindByMask(name);
+        Files.walkFileTree(dir, searcher);
+        return searcher.getJoiner();
+    }
+
+    private StringJoiner findByRegex(Path dir, String name) throws IOException {
         FindByPattern searcher = new FindByPattern(name);
         Files.walkFileTree(dir, searcher);
         return searcher.getJoiner();
+    }
+
+    private void printToFile(StringJoiner joiner, File target) {
+        try (PrintWriter outFile = new PrintWriter(new FileOutputStream(target))) {
+            outFile.println(joiner);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) throws IOException, IllegalArgumentException {

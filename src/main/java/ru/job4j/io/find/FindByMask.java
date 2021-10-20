@@ -4,17 +4,14 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.StringJoiner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class FindByPattern extends SimpleFileVisitor<Path> {
+public class FindByMask extends SimpleFileVisitor<Path> {
 
-    private Pattern pattern;
-    private Matcher matcher;
+    private PathMatcher matcher;
     private StringJoiner joiner = new StringJoiner(System.lineSeparator());
 
-    public FindByPattern(String name) {
-        pattern = Pattern.compile(name);
+    public FindByMask(String name) {
+        matcher = FileSystems.getDefault().getPathMatcher("glob:" + name);
     }
 
     public StringJoiner getJoiner() {
@@ -24,8 +21,7 @@ public class FindByPattern extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         Path fileName = file.getFileName();
-        matcher = pattern.matcher(fileName.toString());
-        if (matcher.matches()) {
+        if (fileName != null && matcher.matches(fileName)) {
             joiner.add(file.toAbsolutePath().toString());
         }
         return FileVisitResult.CONTINUE;

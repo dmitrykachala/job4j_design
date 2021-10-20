@@ -16,6 +16,10 @@ public class ArgsName {
         return values.get(key);
     }
 
+    public Map<String, String> getValues() {
+        return values;
+    }
+
     private void parse(String[] args) throws IllegalArgumentException {
         if (args.length < 1) {
             throw new IllegalArgumentException();
