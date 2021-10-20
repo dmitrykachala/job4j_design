@@ -25,7 +25,7 @@ public class FindByPattern extends SimpleFileVisitor<Path> {
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         Path fileName = file.getFileName();
         matcher = pattern.matcher(fileName.toString());
-        if (matcher.matches()) {
+        if (matcher.find()) {
             joiner.add(file.toAbsolutePath().toString());
         }
         return FileVisitResult.CONTINUE;
