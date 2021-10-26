@@ -33,5 +33,5 @@ select * from departments as d left join employees as e on d.id = e.department_i
 select * from departments as d right join employees as e on d.id = e.department_id;
 select * from employees as e left join departments as d on d.id = e.department_id;
 
-select * from (select t.name, t.gender from teens t where t.gender = 'м') as mt 
-cross join (select t.name, t.gender from teens t where t.gender = 'ж') as ft;
+select t1.name, t1.gender, t2.name, t2.gender from teens t1 cross join teens t2
+where t1.gender != 'м' and t2.gender != 'ж';
