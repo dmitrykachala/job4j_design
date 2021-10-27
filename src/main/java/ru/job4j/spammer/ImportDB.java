@@ -27,7 +27,9 @@ public class ImportDB {
             rd.lines().forEach(s -> {
                 String[] str;
                 str = s.split(";");
-                users.add(new User(str[0], str[1]));
+                if (str.length == 2) {
+                    users.add(new User(str[0], str[1]));
+                }
             });
         }
         return users;
