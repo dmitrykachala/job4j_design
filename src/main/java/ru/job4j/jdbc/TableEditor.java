@@ -34,10 +34,11 @@ public class TableEditor implements AutoCloseable {
     }
 
     private void initConnection() throws Exception {
-        Class.forName(properties.getProperty("driver"));
+        Class.forName(properties.getProperty("jdbc.driver"));
         connection = DriverManager
-                .getConnection(properties.getProperty("url"), properties.getProperty("login"),
-                        properties.getProperty("password"));
+                .getConnection(properties.getProperty("jdbc.url"),
+                        properties.getProperty("jdbc.username"),
+                        properties.getProperty("jdbc.password"));
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());
