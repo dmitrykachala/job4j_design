@@ -30,10 +30,9 @@ select * from car;
 insert into car(name, engine_id, body_id, gearbox_id) values ('Citroen C1', 5, 2, 4),
 ('BMW 1er', 2, 1, 2), ('VW Golf', 1, 1, 2), ('Toyota LC', 4, 4, 2);
 
-select ceb.name, ceb.model, ceb.type, g.type from (select * from 
-			   (select * from car c left join engine e on c.engine_id = e.id) 
-			   ce left join body b on ce.body_id = b.id) ceb left join gearbox g on
-ceb.gearbox_id = g.id;
+select c.name, e.model, b.type, g.type from car c left join engine e on c.engine_id = e.id
+	left join body b on c.body_id = b.id
+		left join gearbox g on c.gearbox_id = g.id;
 
 select * from engine e left join car c on c.engine_id = e.id where c.id is null;
 select * from body b left join car c on c.body_id = b.id where c.id is null;
