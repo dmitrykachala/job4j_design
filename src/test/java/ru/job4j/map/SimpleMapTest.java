@@ -1,9 +1,6 @@
 package ru.job4j.map;
 
-import net.sf.saxon.ma.map.MapFunctionSet;
-import org.hamcrest.core.Is.*;
 import org.junit.Test;
-import ru.job4j.it.BackwardArrayIt;
 
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
