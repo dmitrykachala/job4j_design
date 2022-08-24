@@ -12,12 +12,14 @@ class BoxTest {
         String name = box.whatsThis();
         assertThat(name).isEqualTo("Sphere");
     }
+
     @Test
     void isThisUnknownObject() {
         Box box = new Box(23, 10);
         String name = box.whatsThis();
         assertThat(name).isEqualTo("Unknown object");
     }
+
     @Test
     void isCorrectVertices() {
         Box box = new Box(8, 10);
@@ -29,6 +31,7 @@ class BoxTest {
                 .isLessThan(9)
                 .isEqualTo(8);
     }
+
     @Test
     void isNotCorrectVertices() {
         Box box = new Box(23, 10);
@@ -39,18 +42,21 @@ class BoxTest {
                 .isLessThan(0)
                 .isEqualTo(-1);
     }
+
     @Test
     void checkBooleanTrue() {
         Box box = new Box(8, 10);
         boolean result = box.isExist();
         assertThat(result).isTrue();
     }
+
     @Test
     void checkBooleanFalse() {
         Box box = new Box(23, 10);
         boolean result = box.isExist();
         assertThat(result).isFalse();
     }
+
     @Test
     void checkDoubleCube() {
         Box box = new Box(8, 10);
@@ -61,6 +67,7 @@ class BoxTest {
                 .isGreaterThan(599d)
                 .isLessThan(601d);
     }
+
     @Test
     void checkDoubleSphere() {
         Box box = new Box(0, 2);
