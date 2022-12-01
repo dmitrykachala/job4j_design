@@ -12,35 +12,37 @@ insert into cars (name, producer, count, price) VALUES ('e200cdi', 'mercedes', 1
 insert into cars (name, producer, count, price) VALUES ('golf', 'vw', 1, 40000);
 
 begin;
-insert into cars (name, producer, count, price) VALUES ('granta', 'lada', 17, 10000);
+    insert into cars (name, producer, count, price) VALUES ('granta', 'lada', 17, 10000);
 
-select * from cars;
+    select * from cars;
 
-savepoint fst_svpnt;
-delete from cars where price > 50000;
+    savepoint fst_svpnt;
+    delete from cars where price > 50000;
 
-select * from cars;
+    select * from cars;
 
-update cars set price = 35000 where name = 'golf';
+    update cars set price = 35000 where name = 'golf';
 
-select * from cars;
+    select * from cars;
 
-rollback to fst_svpnt;
+    rollback to fst_svpnt;
 
-select * from cars;
+    select * from cars;
 
-delete from cars;
+    delete from cars;
 
-select * from cars;
+    select * from cars;
 
-rollback to fst_svpnt;
+    rollback to fst_svpnt;
 
-select * from cars;
+    select * from cars;
 
-drop table cars;
+    drop table cars;
 
-select * from cars;
+    select * from cars;
 
-rollback to fst_svpnt;
+    rollback to fst_svpnt;
 
-select * from cars;
+    select * from cars;
+
+commit;
