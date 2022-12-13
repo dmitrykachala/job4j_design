@@ -22,4 +22,6 @@ INSERT INTO orders VALUES (1, 1, 2),
                             (2, 2, 5),
                             (3, 3, 1);
 
+SELECT * FROM customers WHERE customers.age = (SELECT min(customers.age) FROM customers);
+
 SELECT * FROM customers WHERE customers.id NOT IN (SELECT customer_id FROM orders);
